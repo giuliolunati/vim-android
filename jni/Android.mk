@@ -217,6 +217,7 @@ LOCAL_SRC_FILES := blowfish.c \
 	hashtab.c \
 	if_cscope.c \
 	if_xcmdsrv.c \
+	inject_calls.c \
 	main.c \
 	mark.c \
 	mbyte.c \
@@ -251,5 +252,6 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/proto/
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/ncurses/include/
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/ncurses/
 LOCAL_CFLAGS += -DHAVE_CONFIG_H -DTRACE
+LOCAL_LDLIBS := -llog
 
 include $(BUILD_EXECUTABLE)

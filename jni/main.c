@@ -712,7 +712,7 @@ main
     qnx_clip_init();
 #endif
 
-#if defined(MACOS_X) && defined(FEAT_CLIPBOARD)
+#if (defined(MACOS_X) || defined(ANDROID)) && defined(FEAT_CLIPBOARD)
     clip_init(TRUE);
 #endif
 

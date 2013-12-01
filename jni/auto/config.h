@@ -432,5 +432,11 @@
 
 /* Define if fcntl()'s F_SETFD command knows about FD_CLOEXEC */
 #define HAVE_FD_CLOEXEC 1
+/* Added manually */
 #define NO_MBLEN
 #define FEAT_MBYTE
+#define FEAT_CLIPBOARD
+#define FEAT_INJ_CALLS
+#if !defined(ANDROID)
+# define ANDROID 1
+#endif

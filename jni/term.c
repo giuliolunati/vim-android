@@ -2609,6 +2609,18 @@ out_char_nf(c)
 	out_flush();
 }
 
+#if ANDROID
+    void
+out_c(c)
+    unsigned	c;
+{
+    out_buf[out_pos++] = c;
+
+    if (out_pos >= OUT_SIZE)
+	out_flush();
+}
+#endif
+
 #if defined(FEAT_TITLE) || defined(FEAT_MOUSE_TTY) || defined(FEAT_GUI) \
     || defined(FEAT_TERMRESPONSE) || defined(PROTO)
 /*

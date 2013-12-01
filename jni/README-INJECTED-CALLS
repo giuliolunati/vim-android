@@ -1,0 +1,53 @@
+WHAT?
+
+Injected Calls (IC) is a communication protocol between a terminal (server) and an application (client).
+The client send requests ("calls") to the server by mean of special ESC sequences, "injected" in the main  communication flow. 
+If reply is needed, the client sends the name of a temporary nonexistent file; the server creates the file and writes data in it; the clent reads and erase the file.
+
+WHY?
+
+I use IC for access android clipboard from vim-android (client) running in connectbot-improved (server).
+
+WHERE?
+
+IC is implemented in:
+	http://code.google.com/p/connectbot-improved (server)
+	http://github.com/giuliolunati/vim-android (client)
+
+HOW?
+
+Request:
+	Server recognizes special escape sequences in the form:
+
+	ESC TAB COMMAND ZERO.
+	COMMAND := NAME [ TAB ARGS]
+	NAME := ZERO&TAB-FREE-STRING
+	ARGS := ZERO-FREE-STRING 
+
+Reply:
+	CLIENT:
+	1a. embeds in ARGS the name of temporary nonexisting file.
+	SERVER:
+	2a. creates the file
+	2b. writes a 20-bytes header containing reply length in decimal notation.
+	2c. writes reply and closes file.
+	e.g.: "00000000000000000012Hello World!"
+	CLIENT:
+	1b. watches for file creation, with timeout (for avoiding block in case server not implements IC)
+	1c. watches file length, waiting for 20-bytes header
+	1d. reads data length
+	1e. watches file length for data completion
+	1f. reads data
+	1g. erases the file
+	
+WHICH?
+
+Valid commands by now are:
+
+setclip TAB TEXT
+
+	Set clipboard to TEXT.
+
+getclip TAB FILENAME-FOR-REPLY
+
+	Client get clipboard text.
