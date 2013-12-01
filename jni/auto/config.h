@@ -432,3 +432,5 @@
 
 /* Define if fcntl()'s F_SETFD command knows about FD_CLOEXEC */
 #define HAVE_FD_CLOEXEC 1
+#define NO_MBLEN
+#define FEAT_MBYTE

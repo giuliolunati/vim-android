@@ -219,6 +219,7 @@ LOCAL_SRC_FILES := blowfish.c \
 	if_xcmdsrv.c \
 	main.c \
 	mark.c \
+	mbyte.c \
 	memfile.c \
 	memline.c \
 	menu.c \
@@ -226,7 +227,6 @@ LOCAL_SRC_FILES := blowfish.c \
 	misc1.c \
 	misc2.c \
 	move.c \
-	mbyte.c \
 	normal.c \
 	ops.c \
 	option.c \

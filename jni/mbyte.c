@@ -699,7 +699,7 @@ codepage_invalid:
 	     * API */
 	    n = IsDBCSLeadByteEx(enc_dbcs, (BYTE)i) ? 2 : 1;
 #else
-# if defined(MACOS) || defined(__amigaos4__)
+# if defined(NO_MBLEN) || defined(MACOS) || defined(__amigaos4__)
 	    /*
 	     * if mblen() is not available, character which MSB is turned on
 	     * are treated as leading byte character. (note : This assumption
